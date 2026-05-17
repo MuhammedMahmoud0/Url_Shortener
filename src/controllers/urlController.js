@@ -20,8 +20,14 @@ const createAlias = async (req, res, next) => {
     alias = nanoid(6);
   }
 
+  const existingAlias = await Url.findOne({ alias });
+
+  if (existingAlias) {
+    return next(new CustomError("Alias already exists", 409));
+  }
+
   if (exitingUrl) {
-    return next(new CustomError("the url already exists", 400));
+    return next(new CustomError("the url already exists", 409));
   }
 
   await Url.create({ url: input, alias: alias });
@@ -32,7 +38,7 @@ const aliasRedirect = async (req, res, next) => {
   const { alias } = req.params;
   const url = await Url.findOne({ alias });
   if (!url) {
-    return next(new CustomError("the url is not exists", 400));
+    return next(new CustomError("Url doesn't exist", 404));
   }
   res.redirect(url.url);
 };
