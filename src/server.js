@@ -3,7 +3,6 @@ import { config } from "dotenv";
 import { connectDB, disconnectDB } from "./config/connection.js";
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
 import urlRoutes from "./routes/urlRoutes.js";
-import CustomError from "./utils/customError.js";
 
 config();
 connectDB();
