@@ -128,7 +128,9 @@ The API uses a custom error handling middleware that provides different error me
 
 ## Available Error Status Codes
 
-- `400` - Bad Request (missing input, duplicate URL, invalid alias, URL not found)
+- `400` - Bad Request (missing input)
+- `404` - Not Found (URL not found)
+- `409` - Conflict (URL or alias already exists)
 - `500` - Internal Server Error
 
 ## License
